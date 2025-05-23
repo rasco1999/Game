@@ -1,19 +1,16 @@
-
 workflows:
-  build-unity-android:
-    name: Build Unity Android APK
-    max_build_duration: 60
+  unity-android-build:
     environment:
       vars:
-        UNITY_VERSION: 2020.3.48f1
+        UNITY_VERSION: 2021.3.16f1
     scripts:
-      - name: Set up Unity
-        script: |
-          echo "Using Unity version: $UNITY_VERSION"
       - name: Build Android APK
         script: |
-          Unity -batchmode -nographics -silent-crashes \
-          -projectPath . \
+          /opt/unity/Editor/Unity \
+          -batchmode \
+          -nographics \
+          -silent-crashes \
+          -projectPath $CM_BUILD_DIR \
           -executeMethod BuildScript.BuildAndroid \
           -quit
     artifacts:
