@@ -1,0 +1,1 @@
+// Script to simulate ad watching and doubling earnings
