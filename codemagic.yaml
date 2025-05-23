@@ -1,0 +1,19 @@
+workflows:
+  build-android:
+    name: Build Unity APK
+    max_build_duration: 60
+    environment:
+      unity: 2019.4.31f1
+      vars:
+        UNITY_SERIAL: Encrypted(...) # غير مطلوب لحسابات مجانية
+    scripts:
+      - name: Build Android APK
+        script: |
+          cd unity_project_folder_name
+          /Applications/Unity/Hub/Editor/2019.4.31f1/Unity \
+            -batchmode \
+            -projectPath . \
+            -executeMethod BuildScript.BuildAndroid \
+            -quit
+    artifacts:
+      - build/**/*.apk
